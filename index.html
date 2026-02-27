@@ -3,31 +3,377 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>personal-web</title>
+  <title>Liz | 作品集</title>
   <style>
+    :root {
+      --bg: #070a0f;
+      --bg-soft: #0d131d;
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f3f6fb;
+      --muted: #a7b2c4;
+      --primary: #3ecf8e;
+      --primary-soft: rgba(62, 207, 142, 0.16);
+      --card: rgba(255, 255, 255, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f7f9fc;
-      color: #1f2937;
+      background: radial-gradient(circle at 20% 0%, #112437 0%, var(--bg) 32%),
+        linear-gradient(180deg, #070a0f 0%, #06090e 100%);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 9;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(7, 10, 15, 0.72);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+      display: grid;
+      gap: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .badge {
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(62, 207, 142, 0.34);
+      background: var(--primary-soft);
+      color: #b9f8dc;
+      font-size: 13px;
+      letter-spacing: 0.1px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.05;
+      max-width: 780px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #03110a;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+    }
+
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 3vw, 36px);
+    }
+
+    .section-intro {
+      margin: 0 0 28px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
     .card {
-      padding: 32px;
-      border-radius: 12px;
-      background: #ffffff;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      grid-column: span 4;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .chip-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 5px 10px;
+      color: #d6deea;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 22px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .panel strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
       text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .card {
+        grid-column: span 6;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(1120px, calc(100% - 28px));
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 72px;
+      }
+
+      .card {
+        grid-column: span 12;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1>你好，GitHub!</h1>
-    <p>这是我的第一个 personal-web 页面。</p>
+  <header>
+    <div class="container nav">
+      <div class="brand">liz<span>.dev</span></div>
+      <nav>
+        <a href="#projects">项目</a>
+        <a href="#services">服务</a>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="badge">Available for freelance</div>
+      <h1>我设计并开发简洁、快速、可扩展的 Web 体验。</h1>
+      <p>
+        你好，我是 Liz，一名专注于产品体验和前端工程的开发者。
+        我会把设计语言、交互细节和工程质量打包成可持续迭代的网站与应用。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">查看作品</a>
+        <a class="btn btn-secondary" href="#contact">联系合作</a>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>精选项目</h2>
+      <p class="section-intro">
+        下面是近期完成的代表项目，覆盖品牌官网、SaaS 仪表盘和电商增长页面。
+      </p>
+      <div class="grid">
+        <article class="card">
+          <h3>Nova AI Landing</h3>
+          <p>为 AI 产品设计营销官网，强调价值表达、可信度和转化路径，页面加载保持在 1 秒内。</p>
+          <div class="chip-row">
+            <span class="chip">HTML/CSS</span>
+            <span class="chip">A/B Test</span>
+            <span class="chip">SEO</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Flowlytics Dashboard</h3>
+          <p>构建实时数据看板，支持多维筛选、深色模式和权限分层，显著提升运营分析效率。</p>
+          <div class="chip-row">
+            <span class="chip">React</span>
+            <span class="chip">Charting</span>
+            <span class="chip">Design System</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Local Brand Commerce</h3>
+          <p>重构品牌电商落地页与结算流程，提升移动端可用性与首屏可读性，最终提高下单转化率。</p>
+          <div class="chip-row">
+            <span class="chip">Performance</span>
+            <span class="chip">UX</span>
+            <span class="chip">Conversion</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2>我可以提供什么</h2>
+      <p class="section-intro">
+        从 0 到 1 设计开发，或对现有站点做体验与性能升级，按目标导向交付结果。
+      </p>
+      <div class="grid">
+        <article class="card">
+          <h3>品牌官网设计开发</h3>
+          <p>快速搭建具备产品叙事能力的官网，突出差异化卖点并沉淀品牌资产。</p>
+        </article>
+        <article class="card">
+          <h3>前端工程化升级</h3>
+          <p>规范组件、状态与构建流程，让项目更易协作、更易维护、上线更稳定。</p>
+        </article>
+        <article class="card">
+          <h3>性能与转化优化</h3>
+          <p>通过性能诊断、信息架构与文案布局调整，系统提升用户留存与业务转化。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>关于我</h2>
+      <div class="about">
+        <div class="panel">
+          <strong>跨设计与工程的产品视角</strong>
+          <p>
+            我习惯先理解业务目标，再拆解成体验策略与技术方案。
+            项目中会关注可读代码、复用效率、视觉一致性，以及未来半年可持续迭代的成本。
+          </p>
+        </div>
+        <div class="panel">
+          <strong>常用技术栈</strong>
+          <p>HTML、CSS、JavaScript、TypeScript、React、Next.js、Node.js、Supabase。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>联系合作</h2>
+      <p class="section-intro">
+        如果你正在做新产品上线、官网升级或增长实验，欢迎发我邮件，我们可以快速聊聊方向。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:niumingzhe0704@gmail.com">发送邮件</a>
+        <a class="btn btn-secondary" href="https://github.com/Lizcj240" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    © <span id="year"></span> Liz. Built with care.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
