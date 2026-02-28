@@ -1,622 +1,759 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MingZhe | Portfolio</title>
-  <meta name="description" content="MingZhe builds minimal, premium digital products with strong UX craft and reliable front-end engineering." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王世林 | 个人简历站</title>
+  <meta name="description" content="王世林个人简历站：背景、自我介绍、工作经历、项目经历与联系方式。">
   <style>
     :root {
-      --canvas: #0e1116;
-      --panel: #141820;
-      --border: rgba(71, 85, 105, 0.45);
-      --text: #e7ecf2;
-      --text-muted: #9da9ba;
-      --accent: #e7ecf2;
+      --bg-dark: #050816;
+      --bg-card: rgba(12, 24, 20, 0.86);
+      --bg-card-hover: rgba(18, 36, 30, 0.92);
+      --text-primary: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: rgba(229, 231, 235, 0.65);
+      --accent-green: #48ff9b;
+      --accent-teal: #2dd4bf;
+      --accent-line: rgba(72, 255, 155, 0.26);
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --header-h: 74px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--canvas);
-      color: var(--text);
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 10% -20%, rgba(72, 255, 155, 0.12), transparent 35%), var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
+    a { text-decoration: none; color: inherit; }
 
-    body::before,
-    body::after {
-      content: "";
+    .header {
       position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    body::before {
-      background:
-        radial-gradient(circle at 18% 8%, rgba(59, 130, 246, 0.28), transparent 36%),
-        radial-gradient(circle at 82% 16%, rgba(139, 92, 246, 0.24), transparent 38%),
-        radial-gradient(circle at 50% 84%, rgba(6, 182, 212, 0.18), transparent 40%);
-    }
-
-    body::after {
-      opacity: 0.34;
-      background-image:
-        linear-gradient(to right, rgba(100, 116, 139, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(100, 116, 139, 0.08) 1px, transparent 1px);
-      background-size: 38px 38px;
-      mask-image: radial-gradient(circle at center, black 25%, transparent 85%);
-      -webkit-mask-image: radial-gradient(circle at center, black 25%, transparent 85%);
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
-
-    /* ---- Header ---- */
-    header {
-      position: sticky;
       top: 0;
-      z-index: 40;
-      border-bottom: 1px solid var(--border);
-      background: rgba(14, 17, 22, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 48px;
+      background: rgba(5, 8, 22, 0.78);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent-green); }
+    .nav-links {
+      flex: 1;
+      max-width: 65%;
+      margin-left: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-links a {
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+      padding-bottom: 8px;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent-green);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent-green); }
+    .nav-links a.active {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+    .nav-links a.active::after { transform: scaleX(1); }
 
-    .nav {
+    .hero {
+      min-height: 72vh;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      height: 60px;
+      padding: 130px 48px 50px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-
-    .brand { font-weight: 700; letter-spacing: 0.2px; font-size: 15px; }
-
-    nav { display: flex; gap: 6px; }
-
-    nav a {
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      color: var(--text-muted);
-      transition: color 0.2s, background 0.2s;
-    }
-
-    nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
-
-    /* ---- Hero ---- */
-    .hero { padding: 72px 0 0; }
-
-    .hero-intro { max-width: 780px; margin-bottom: 40px; }
-
-    .hero-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-      opacity: 0;
-      animation: fadeUp 0.5s ease forwards;
-    }
-
     .hero h1 {
-      font-size: clamp(2.2rem, 4.8vw, 4.25rem);
-      line-height: 1.06;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
       letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .hero-role {
+      color: var(--accent-green);
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .hero-intro {
+      max-width: 920px;
+      font-size: 1.06rem;
+      color: var(--text-secondary);
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 88px 48px;
+      scroll-margin-top: calc(var(--header-h) + 16px);
+    }
+    .section-title {
+      font-size: 2.1rem;
       font-weight: 700;
+      letter-spacing: -0.03em;
       margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeUp 0.5s ease 0.06s forwards;
     }
 
-    .hero-bio {
-      font-size: 18px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      max-width: 720px;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.5s ease 0.12s forwards;
+    .bg-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 20px;
     }
-
-    .hero-actions {
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.25s var(--transition-smooth);
+    }
+    .card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+      border-color: rgba(72, 255, 155, 0.4);
+    }
+    .card h3 { font-size: 1.12rem; margin-bottom: 12px; color: var(--text-primary); }
+    .card ul { list-style: none; display: grid; gap: 12px; }
+    .card li { color: var(--text-secondary); font-size: 0.95rem; }
+    .edu-item {
+      padding-left: 14px;
+      border-left: 2px solid var(--accent-line);
+    }
+    .edu-time { color: var(--accent-teal); font-size: 0.84rem; margin-bottom: 2px; }
+    .skill-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      opacity: 0;
-      animation: fadeUp 0.5s ease 0.16s forwards;
+      gap: 8px;
+      margin-top: 10px;
     }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-size: 14px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      color: var(--text);
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.06); }
-
-    .btn-ghost { background: transparent; color: var(--text-muted); }
-    .btn-ghost:hover { color: var(--text); background: transparent; }
-
-    /* ---- Project Grid ---- */
-    .project-grid {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(3, 1fr);
-      padding-bottom: 72px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .project-card {
-      display: block;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      opacity: 0;
-      animation: fadeUp 0.5s ease forwards;
-    }
-
-    .project-card:nth-child(1) { animation-delay: 0.18s; }
-    .project-card:nth-child(2) { animation-delay: 0.24s; }
-    .project-card:nth-child(3) { animation-delay: 0.30s; }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.4);
-    }
-
-    .card-img {
-      position: relative;
-      aspect-ratio: 16 / 11;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .project-card:hover .card-img img { transform: scale(1.03); }
-
-    .card-img::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.05) 50%, transparent);
-    }
-
-    .card-year {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      z-index: 2;
-      font-size: 11px;
-      color: #fff;
-      background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.25);
+    .tag {
+      font-size: 0.82rem;
+      color: var(--accent-green);
+      border: 1px solid rgba(72, 255, 155, 0.28);
       border-radius: 999px;
-      padding: 4px 10px;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      padding: 5px 10px;
+      background: rgba(72, 255, 155, 0.08);
     }
 
-    .card-body { padding: 18px; }
+    .about-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+    .about-list li {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .about-item-title {
+      display: block;
+      color: var(--accent-green);
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .about-item-text {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
 
-    .card-body h2 {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+    .exp-list { display: grid; gap: 22px; }
+    .exp-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 26px 28px;
+    }
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-bottom: 10px;
     }
-
-    .card-body p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .chip {
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-    }
-
-    /* ---- Sections ---- */
-    section { padding: 72px 0; border-bottom: 1px solid var(--border); }
-
-    .section-label { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
-
-    .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      line-height: 1.18;
-      letter-spacing: -0.02em;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .section-desc {
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--text-muted);
-      max-width: 720px;
-      margin-bottom: 28px;
-    }
-
-    /* Services grid */
-    .services-grid {
+    .exp-company { font-size: 1.2rem; font-weight: 600; }
+    .exp-date { color: var(--text-muted); font-size: 0.9rem; }
+    .exp-role { color: var(--accent-green); font-size: 0.95rem; margin-bottom: 14px; }
+    .direction-grid {
       display: grid;
+      gap: 10px;
+    }
+    .direction {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: rgba(0, 0, 0, 0.16);
+    }
+    .direction-title {
+      color: var(--accent-teal);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .direction ul { padding-left: 18px; display: grid; gap: 6px; }
+    .direction li { color: var(--text-secondary); font-size: 0.93rem; }
+
+    .projects-wrap { position: relative; }
+    .projects-track {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      grid-template-columns: repeat(3, 1fr);
+      padding: 8px 2px 18px;
+    }
+    .project-card {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(72, 255, 155, 0.08), rgba(8, 16, 30, 0.9));
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.22s var(--transition-smooth);
+      text-align: left;
+      color: inherit;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(72, 255, 155, 0.4);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+    .project-title { font-size: 1.06rem; font-weight: 600; margin-bottom: 8px; }
+    .project-time { color: var(--accent-teal); font-size: 0.84rem; margin-bottom: 8px; }
+    .project-role { color: var(--accent-green); font-size: 0.86rem; margin-bottom: 10px; }
+    .project-cover-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      line-clamp: 4;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .project-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 0.86rem;
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+    .project-more::after {
+      content: ">";
+      transition: transform 0.2s;
+    }
+    .project-card:hover .project-more::after {
+      transform: translateX(3px);
     }
 
-    .service-card {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px;
-      background: var(--panel);
-    }
-
-    .service-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
-    .service-card p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
-
-    /* About grid */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 22px;
-    }
-
-    .panel-box {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px;
-      background: rgba(255,255,255,0.02);
-    }
-
-    .panel-box strong { display: block; margin-bottom: 10px; }
-    .panel-box p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
-
-    /* Contact */
-    .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    /* ---- Footer ---- */
-    footer {
-      padding: 32px 0 48px;
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    /* ---- Animations ---- */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---- Custom Cursor ---- */
-    @media (hover: hover) and (pointer: fine) {
-      html, body, a, button, input, textarea, select, [role="button"] {
-        cursor: none !important;
-      }
-    }
-
-    .cursor-layer {
+    .modal {
       position: fixed;
       inset: 0;
-      pointer-events: none;
-      z-index: 100;
-      opacity: 0;
-      transition: opacity 0.2s ease;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 3000;
+      padding: 20px;
     }
-
-    .cursor-layer.is-visible { opacity: 1; }
-
-    .cursor-main {
-      position: fixed;
-      transform: translate(-50%, -50%);
-      display: grid;
-      place-items: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.34), rgba(59,130,246,0.2));
-      box-shadow: 0 0 20px rgba(96,165,250,0.35), 0 0 38px rgba(139,92,246,0.24);
-      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    .modal.open { display: flex; }
+    .modal-content {
+      width: min(860px, 96vw);
+      max-height: 88vh;
+      overflow: auto;
+      background: #0b1522;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 24px;
     }
-
-    .cursor-main.is-hovering {
-      transform: translate(-50%, -50%) scale(1.28);
-      background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.54), rgba(56,189,248,0.36));
-      box-shadow: 0 0 24px rgba(59,130,246,0.55), 0 0 56px rgba(192,132,252,0.42);
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: flex-start;
     }
-
-    .cursor-icon {
-      font-size: 18px;
+    .modal-title { font-size: 1.3rem; font-weight: 700; }
+    .modal-close {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      font-size: 20px;
       line-height: 1;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.35));
+      cursor: pointer;
+    }
+    .modal-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+    .modal-block { margin-bottom: 16px; }
+    .modal-label {
+      display: inline-block;
+      color: var(--accent-teal);
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .modal-text { color: var(--text-secondary); font-size: 0.95rem; }
+    .modal-list { padding-left: 18px; display: grid; gap: 8px; color: var(--text-secondary); font-size: 0.95rem; }
+
+    .contact-links { display: grid; gap: 14px; max-width: 520px; }
+    .contact-link {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      color: var(--text-secondary);
+      transition: border-color 0.2s;
+    }
+    .contact-link:hover { border-color: rgba(72, 255, 155, 0.4); color: var(--text-primary); }
+
+    .footer {
+      text-align: center;
+      padding: 38px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      font-size: 0.9rem;
     }
 
-    .cursor-trail {
-      position: fixed;
-      transform: translate(-50%, -50%);
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(59,130,246,0.38), rgba(168,85,247,0.15) 70%, transparent);
-      filter: blur(0.3px);
-      transition: opacity 0.2s ease;
+    .animate-in {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s var(--transition-smooth), transform 0.45s var(--transition-smooth);
     }
+    .animate-in.visible { opacity: 1; transform: translateY(0); }
 
-    .cursor-ripple {
-      position: fixed;
-      transform: translate(-50%, -50%);
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(125,211,252,0.7);
-      box-shadow: 0 0 18px rgba(56,189,248,0.35);
-      animation: cursorRipple 1.4s ease-out infinite;
-    }
-
-    @keyframes cursorRipple {
-      0% { width: 24px; height: 24px; opacity: 0.8; }
-      100% { width: 92px; height: 92px; opacity: 0; }
-    }
-
-    /* ---- Responsive ---- */
     @media (max-width: 900px) {
-      .project-grid, .services-grid { grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr; }
+      .bg-layout { grid-template-columns: 1fr; }
+      .nav-links { max-width: 74%; margin-left: 24px; }
+      .projects-track { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 640px) {
-      .container { width: min(1120px, calc(100% - 28px)); }
-      nav { display: none; }
-      .hero { padding-top: 52px; }
-      .project-grid, .services-grid { grid-template-columns: 1fr; }
+    @media (max-width: 680px) {
+      .header { padding: 16px 22px; }
+      .hero, section { padding-left: 22px; padding-right: 22px; }
+      .hero { padding-top: 108px; }
+      .nav-links { display: none; }
+      .modal-content { padding: 18px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">MingZhe</div>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+  <header class="header">
+    <nav class="nav-inner">
+      <a href="#" class="logo">王<span>世林</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#background">背景</a>
+        <a href="#about">自我介绍</a>
+        <a href="#experience">工作经历</a>
+        <a href="#work">项目经历</a>
+        <a href="#contact">联系方式</a>
+      </div>
+    </nav>
   </header>
 
-  <main class="container">
-    <div class="hero">
-      <div class="hero-intro">
-        <p class="hero-label">Portfolio / Shanghai, China</p>
-        <h1>MingZhe</h1>
-        <p class="hero-bio">I design and build calm digital products with strong interaction quality, clear structure, and measurable business outcomes.</p>
-        <div class="hero-actions">
-          <a class="btn" href="#projects">View all projects</a>
-          <a class="btn btn-ghost" href="#contact">Contact me</a>
-        </div>
-      </div>
-
-      <div class="project-grid" id="projects">
-        <a class="project-card" href="#orbit">
-          <div class="card-img">
-            <img src="images/hero-1.png" alt="Orbit Admin Console" />
-            <span class="card-year">2025</span>
-          </div>
-          <div class="card-body">
-            <h2>Orbit Admin Console</h2>
-            <p>Redesigned a complex admin console into a clean, decision-focused workflow that reduced cognitive load for ops teams.</p>
-            <div class="chip-row">
-              <span class="chip">B2B SaaS</span>
-              <span class="chip">Dashboard</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project-card" href="#northstar">
-          <div class="card-img">
-            <img src="images/hero-2.png" alt="Northstar Commerce Replatform" />
-            <span class="card-year">2024</span>
-          </div>
-          <div class="card-body">
-            <h2>Northstar Commerce</h2>
-            <p>Rebuilt a direct-to-consumer storefront to improve mobile purchase completion while preserving brand clarity.</p>
-            <div class="chip-row">
-              <span class="chip">E-commerce</span>
-              <span class="chip">Conversion</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project-card" href="#signal">
-          <div class="card-img">
-            <img src="images/hero-3.png" alt="Signal AI Workspace" />
-            <span class="card-year">2024</span>
-          </div>
-          <div class="card-body">
-            <h2>Signal AI Workspace</h2>
-            <p>Designed an AI-assisted workspace that helps teams summarize research and move from notes to action plans quickly.</p>
-            <div class="chip-row">
-              <span class="chip">AI Product</span>
-              <span class="chip">Productivity</span>
-            </div>
-          </div>
-        </a>
-      </div>
+  <section class="hero animate-in" id="hero">
+    <div>
+      <h1>王世林</h1>
+      <p class="hero-role">双碳 / ESG 咨询与数字化落地</p>
+      <p class="hero-intro">环境科学专业，本硕双985；4年双碳/ESG项目咨询、设计及落地经验，具备碳核算、碳足迹、碳减排、碳资产管理及披露的完整知识体系。</p>
     </div>
+  </section>
 
-    <section id="services">
-      <p class="section-label">Services</p>
-      <h2 class="section-title">What I can deliver</h2>
-      <p class="section-desc">From zero-to-one design + development, or upgrading existing products for better experience and performance.</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Brand Website Design</h3>
-          <p>Build narrative-driven websites that highlight differentiation and solidify brand equity.</p>
+  <section id="background" class="animate-in">
+    <h2 class="section-title">背景</h2>
+    <div class="bg-layout">
+      <article class="card">
+        <h3>教育背景</h3>
+        <ul>
+          <li class="edu-item">
+            <p class="edu-time">2016.09 - 2019.06</p>
+            <p>同济大学｜环境科学（辅修绿色经济与可持续发展）｜硕研</p>
+          </li>
+          <li class="edu-item">
+            <p class="edu-time">2012.09 - 2016.06</p>
+            <p>天津大学｜环境科学｜本科</p>
+          </li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>技能水平 & 证书</h3>
+        <ul>
+          <li>外语水平：CET-6，良好的读写能力，可用英语进行工作和日常交流。</li>
+          <li>计算机水平：精通AutoCAD、Simapro、Axure RP等软件，掌握python基本用法。</li>
+          <li>专业证书：CFA level Ⅰ；注册公用设备工程师（基础）。</li>
+        </ul>
+        <div class="skill-tags">
+          <span class="tag">GHG Protocol</span>
+          <span class="tag">ISO 14064</span>
+          <span class="tag">ISO 14067</span>
+          <span class="tag">GRI / TCFD</span>
         </div>
-        <div class="service-card">
-          <h3>Front-end Engineering</h3>
-          <p>Standardize components, state, and build processes to make projects easier to collaborate on and maintain.</p>
-        </div>
-        <div class="service-card">
-          <h3>Performance & Conversion</h3>
-          <p>Through performance diagnostics, information architecture, and copy adjustments, systematically improve retention and business conversion.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <p class="section-label">About</p>
-      <h2 class="section-title">Senior Product Designer & Front-end Engineer</h2>
-      <div class="about-grid">
-        <div class="panel-box">
-          <strong>Cross-discipline product perspective</strong>
-          <p>I start by understanding business goals, then break them down into experience strategy and technical approach. I care about readable code, reuse efficiency, visual consistency, and sustainable iteration cost.</p>
-        </div>
-        <div class="panel-box">
-          <strong>Tech stack</strong>
-          <p>HTML, CSS, JavaScript, TypeScript, React, Next.js, Node.js, Tailwind CSS, Supabase.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <p class="section-label">Contact</p>
-      <h2 class="section-title">Let's build something thoughtful.</h2>
-      <p class="section-desc">If you're launching a new product, upgrading a website, or running growth experiments, feel free to reach out.</p>
-      <div class="contact-actions">
-        <a class="btn" href="mailto:niumingzhe0704@gmail.com">Send email</a>
-        <a class="btn btn-ghost" href="https://github.com/Lizcj240" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; <span id="year"></span> MingZhe. Minimal. Calm. Intentional.</p>
+      </article>
     </div>
+  </section>
+
+  <section id="about" class="animate-in">
+    <h2 class="section-title">自我介绍</h2>
+    <ul class="about-list">
+      <li>
+        <span class="about-item-title">工作背景</span>
+        <p class="about-item-text">环境科学专业，本硕双985；4年双碳/ESG项目咨询、设计及落地经验，完整的双碳/ESG知识体系，理解绿色低碳/节能生产模式；0→1主导双碳/ESG综合管理系统/双碳咨询项目落地，技术+项目管理复合型人才。</p>
+      </li>
+      <li>
+        <span class="about-item-title">双碳管理能力</span>
+        <p class="about-item-text">工作经历涵盖组织碳排放、产品碳足迹、因子库搭建、碳减排管理、碳资产管理以及报告披露等；全面掌握组织碳排放/产品碳足迹完整建模及计算方法、碳减排目标制定及落地方案设计、碳资产开发方法学、碳价预测、碳资产估值及企业碳资产管理方案设计；熟悉国内外双碳/ESG主流标准、指南及相关软件工具应用。</p>
+      </li>
+      <li>
+        <span class="about-item-title">项目管理能力</span>
+        <p class="about-item-text">主导14+管理咨询/工程设计/科研项目，擅长项目规划、可行性分析、技术投标、预防性风险管控。</p>
+      </li>
+      <li>
+        <span class="about-item-title">复合知识背景</span>
+        <p class="about-item-text">双碳+ESG+绿色金融复合知识背景。具备碳核算、碳披露、碳减排、碳资产管理及碳交易完整知识体系；熟悉GRI、TCFD等ESG披露、气候数据披露的标准、方法及规则重点；熟悉ESG投资风险评估、估值建模方法；已通过CFA-level 1，具备完备的绿色金融知识体系，熟悉权益/债权类资产估值方法、碳资产估值模型搭建。</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="experience" class="animate-in">
+    <h2 class="section-title">工作经历</h2>
+    <div class="exp-list">
+      <article class="exp-item">
+        <div class="exp-head">
+          <span class="exp-company">浪潮云洲工业互联网有限公司</span>
+          <span class="exp-date">2024.01 - 2024.12</span>
+        </div>
+        <div class="exp-role">碳管理工程师｜所属部门：业务创新部</div>
+        <div class="direction-grid">
+          <div class="direction">
+            <p class="direction-title">业务规划</p>
+            <ul>
+              <li>结合公司原有业务资源和技术优势，独立开展双碳全业务链梳理，确定部门双碳业务承接重点方向、开展路径和开展策略。输出标准化文件并面向部门及公司进行专业培训。</li>
+            </ul>
+          </div>
+          <div class="direction">
+            <p class="direction-title">业务支持</p>
+            <ul>
+              <li>对外：1）项目前期客户交流汇报、需求分析和现场调研；2）项目交流方案、支撑材料（包括但不限于：项目设计方案、政策分析报告、市场分析报告等）编制；3）独立实施双碳咨询项目。</li>
+              <li>对内：编制双碳解决方案及业务开展材料培训文件，分配团队双碳项目工作，面向内部团队及公司销售团队开展培训。</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="exp-item">
+        <div class="exp-head">
+          <span class="exp-company">海尔集团-卡奥斯数字科技（北京）有限公司</span>
+          <span class="exp-date">2022.08 - 2023.12</span>
+        </div>
+        <div class="exp-role">碳管理工程师｜所属部门：创新研发平台</div>
+        <div class="direction-grid">
+          <div class="direction">
+            <p class="direction-title">双碳业务落地</p>
+            <ul>
+              <li>碳盘查业务：完成3家海尔家电工厂线下碳盘查业务，主导数据收集、现场调研、清册编制及报告撰写工作。</li>
+              <li>企业及园区数字化双碳系统：从0→1主导2项企业/园区数字化双碳系统落地，独立制定双碳系统功能框架、版本规划；独立完成双碳系统全部功能实现逻辑、操作界面交互、计算模型搭建及数据分析图形设计及验收。</li>
+              <li>内部技术支持：独立完成双碳发明型专利2篇（已公开）；部门及团队内部开展双碳技术分享及培训3场。</li>
+            </ul>
+          </div>
+          <div class="direction">
+            <p class="direction-title">双碳模型搭建</p>
+            <ul>
+              <li>组织碳排放模型：独立完成：1)国家24个重点行业企业scope1+scope2温室气体排放核算及分析模型搭建；2)按照ISO 14064-2018要求，独立完成家电制造行业类别1-类别6温室气体排放核算及分析模型搭建。</li>
+              <li>产品碳足迹模型：独立使用Simapro完成1套家用空调和1套多元醇燃料LCA模型的(摇篮到坟墓)搭建。</li>
+              <li>碳资产模型：1)独立搭建配额试算模型；2)全国和地方交易所的碳价预测模型搭建；3)碳资产定价模型搭建。</li>
+              <li>因子库搭建：1)整理国内外公开因子库7套；2)独立完成企业自用组织碳排放因子库及产品碳足迹因子库搭建。</li>
+            </ul>
+          </div>
+          <div class="direction">
+            <p class="direction-title">双碳技术开发</p>
+            <ul>
+              <li>组织碳核算技术：独立设计线上组织碳排放数据收集、录入、计算、分析、报表生成技术及配套因子库管理。</li>
+              <li>产品全生命周期碳足迹：独立设计线上产品LCA建模、计算、分析、报表生成技术及配套因子库管理。</li>
+              <li>碳减排管理技术：基于SBTi，独立设计线上智能化碳减排目标设定、目标分解、进度追踪、评估反馈技术。</li>
+              <li>碳资产管理技术：独立设计线上配额试算技术，配额及其他碳资产管理、交易管理技术。</li>
+            </ul>
+          </div>
+          <div class="direction">
+            <p class="direction-title">政策标准研究</p>
+            <ul>
+              <li>碳核算研究：独立对国家重点行业温室气体排放核算与报告指南、温室气体清单编制指南、IPCC 2006-2019、ISO14067和GHG Protocol等政策指南中的核算方法、工作流程和要点进行研究和报告输出。</li>
+              <li>碳资产研究：围绕以下内容独立开展研究并进行报告输出：独立对国家出台的配额总量设定计算方案及分配、履约清缴工作流程和交易流程；CCER开发方法学及开发流程；VCS&GS开发流程。</li>
+              <li>碳足迹方面：独立对ISO 14067、PAS 2050和部分行业白皮书等政策指南中的计算、评价、工作流程和要点进行研究和报告输出；分别对离散型/连续型产品的碳足迹计算分析方法进行文献研究。</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="exp-item">
+        <div class="exp-head">
+          <span class="exp-company">广东省建筑设计研究院有限公司（国资委下属）</span>
+          <span class="exp-date">2019.07 - 2022.07</span>
+        </div>
+        <div class="exp-role">环保工程师｜所属部门：市政三所</div>
+        <div class="direction-grid">
+          <div class="direction">
+            <p class="direction-title">双碳咨询</p>
+            <ul>
+              <li>帮助客户完成碳家底摸查和数据分析，输出报告，根据客户目标提出双碳规划，输出可落地的解决方案。</li>
+            </ul>
+          </div>
+          <div class="direction">
+            <p class="direction-title">项目管理</p>
+            <ul>
+              <li>主导/参与市政建设项目10余项，项目总投资金额累计30+亿元。负责项目投标、项目统筹、项目设计和对外汇报。独立编制投标文件15份+，投标得分多次第一，项目废标率为0；项目正式评审汇报通过率100%。</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="work" class="animate-in">
+    <h2 class="section-title">项目经历</h2>
+    <div class="projects-wrap">
+      <div class="projects-track" id="projectTrack"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="animate-in">
+    <h2 class="section-title">联系方式</h2>
+    <div class="contact-links">
+      <a class="contact-link" href="tel:18916272091">手机：18916272091</a>
+      <a class="contact-link" href="mailto:emplin77777@163.com">邮箱：emplin77777@163.com</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 王世林 · 个人简历站</p>
   </footer>
 
-  <div class="cursor-layer" id="cursorLayer" aria-hidden="true"></div>
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-head">
+        <div>
+          <h3 class="modal-title" id="modalTitle"></h3>
+          <p class="modal-meta" id="modalMeta"></p>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="关闭弹窗">&times;</button>
+      </div>
+      <div class="modal-block">
+        <p class="modal-label">项目描述</p>
+        <p class="modal-text" id="modalDesc"></p>
+      </div>
+      <div class="modal-block">
+        <p class="modal-label">项目难点</p>
+        <p class="modal-text" id="modalChallenge"></p>
+      </div>
+      <div class="modal-block">
+        <p class="modal-label">项目职责</p>
+        <ul class="modal-list" id="modalDuty"></ul>
+      </div>
+      <div class="modal-block">
+        <p class="modal-label">项目业绩</p>
+        <p class="modal-text" id="modalResult"></p>
+      </div>
+    </div>
+  </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    var projectData = [
+      {
+        title: "海淀区某国资控股企业项目碳中和实施",
+        time: "2024.03 - 2023.04",
+        role: "执行负责人",
+        desc: "项目描述：针对客户正在开展的某咨询服务项目，进行项目碳盘查，编制碳盘查报告，并协助取得碳中和认证。",
+        challenge: "项目难点：项目涉及碳盘查、碳核查认证以及使用自愿减排量进行注销中和，相关标准、规则多，且需独立完成。",
+        duty: [
+          "项目职责：独立完成：1）确定项目碳中和适用标准、指南文件，并根据规则收集活动水平数据、选取排放因子，编制碳排放计算表和碳盘查报告；",
+          "2）对接三方核查机构，完成项目碳核查认证；",
+          "3）使用CCER账户进行自愿减排量划转、注销，联合绿交所完成碳中和认证。"
+        ],
+        result: "项目业绩：独立完成项目碳中和实施全过程，顺利帮助客户拿到项目碳中和认证，并为公司增加项目毛利16.7%。"
+      },
+      {
+        title: "山东化工园区双碳综合管理系统开发项目",
+        time: "2023.03 - 2023.12",
+        role: "执行负责人",
+        desc: "项目描述：根据山东省某化工园区诉求，开发园区双碳综合管理系统。",
+        challenge: "项目难点：系统须分别满足园区管委会、集团和园区企业工厂多个层面、多个行业的使用需求，且要求开发的功能模块多，模块间数据内在联系复杂。",
+        duty: [
+          "项目职责：1）主导双碳综合管理系统全部功能模块（基础信息配置、因子库管理、组织碳核算、产品碳足迹、碳减排管理、碳资产管理）及子模块内容规划和进度规划；",
+          "2）独立完成全部模块功能逻辑设计，内容设计，计算模型搭建，因子库设计及因子库缺省值提供，碳数据分析设计及报表模板编制；",
+          "3）负责项目评审汇报，主导项目交付前内部验收。"
+        ],
+        result: "项目业绩：从0→1完成化工园区双碳综合管理系统设计、开发、落地，直接增加项目团队收入270w+，预计24年确定性园区客户需求量增加20+，可在本管理系统基础上实现快速部署，潜在收入增长5000w+。"
+      },
+      {
+        title: "海尔家电工厂碳盘查项目+碳核算系统开发项目",
+        time: "2022.09 - 2023.02",
+        role: "执行负责人",
+        desc: "项目描述：线下完成海尔家电工厂碳盘查工作；据此开发卡奥斯双碳管理系统，提高集团未来核查效率和准确率。",
+        challenge: "项目难点：工厂生产人员未接触过双碳内容，碳数据质量差；企业无双碳管理系统开发经验且项目开发周期紧。",
+        duty: [
+          "项目职责：1)对工厂生产人员进行双碳培训，明确碳数据收集范围、格式及标准，编制碳盘查报告模板，输出碳盘查计算清册及盘查报告；",
+          "2)主导卡奥斯双碳管理系统架构设计、功能模块规划，独立完成系统功能逻辑设计，操作界面、交互界面设计，碳排放计算模型及因子库搭建，图形看板设计及输出报告清册模板编制。"
+        ],
+        result: "项目业绩：从0→1按时完成卡奥斯双碳管理系统开发上线，有效提高核查效率，单次盘查工作周期降低80%，盘查频率由1年/次提高到1月/1次；有效提高核查质量，全部碳数据格式统一可溯源；有效提高核查通用性，系统支持全部工厂参与盘查，生成报告清册格式统一，碳数据统一上报，合并查看，便于辅助管理层决策。"
+      },
+      {
+        title: "粤海集团水务板块碳盘查+解决方案咨询项目",
+        time: "2022.03 - 2022.07",
+        role: "执行负责人",
+        desc: "项目描述：企业希望通过开展碳排放核算及评价工作，摸清碳家底，并以此为基础制定实现双碳目标的主要策略。",
+        challenge: "项目难点：客户对双碳概念较为陌生，项目目标和自身诉求不明确；业务分布范围广，摸查难度大。",
+        duty: [
+          "项目职责：针对行业特点，通过培训向客户导入双碳基本概念，引导客户提出关键诉求，明确项目目标；",
+          "建立碳核查模板，帮助客户摸清碳家底，根据客户业务结构及运营数据，明确双碳目标及规划，并输出可落地的解决方案。"
+        ],
+        result: "项目业绩：项目成果远超预期，成效得到客户认可，因此扩大合作范围，额外追加项目咨询费，提高50%项目收入。"
+      }
+    ];
 
-    (function initCursor() {
-      var isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-      if (!isDesktop) return;
+    function renderProjectCards() {
+      var track = document.getElementById("projectTrack");
+      var html = projectData.map(function (p, idx) {
+        return [
+          '<button class="project-card" data-index="' + idx + '" aria-label="查看项目详情：' + p.title + '">',
+            '<p class="project-title">' + p.title + '</p>',
+            '<p class="project-time">' + p.time + '</p>',
+            '<p class="project-role">' + p.role + '</p>',
+            '<p class="project-cover-desc">' + p.desc + '</p>',
+            '<span class="project-more">查看更多</span>',
+          '</button>'
+        ].join("");
+      }).join("");
+      track.innerHTML = html;
+    }
 
-      var TRAIL_COUNT = 9;
-      var layer = document.getElementById("cursorLayer");
-      var mouse = { x: 0, y: 0 };
-      var trail = [];
-      var lastMove = Date.now();
-      var hovering = false;
+    function openProjectModal(index) {
+      var p = projectData[index];
+      if (!p) return;
+      document.getElementById("modalTitle").textContent = p.title;
+      document.getElementById("modalMeta").textContent = p.time + "｜" + p.role;
+      document.getElementById("modalDesc").textContent = p.desc;
+      document.getElementById("modalChallenge").textContent = p.challenge;
+      document.getElementById("modalResult").textContent = p.result;
+      document.getElementById("modalDuty").innerHTML = p.duty.map(function (x) {
+        return "<li>" + x + "</li>";
+      }).join("");
+      var modal = document.getElementById("projectModal");
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
 
-      for (var i = 0; i < TRAIL_COUNT; i++) trail.push({ x: 0, y: 0 });
+    function closeProjectModal() {
+      var modal = document.getElementById("projectModal");
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
 
-      var mainEl = document.createElement("span");
-      mainEl.className = "cursor-main";
-      mainEl.innerHTML = '<span class="cursor-icon">🥩</span>';
-      layer.appendChild(mainEl);
+    function setupNavActiveState() {
+      var nav = document.getElementById("navLinks");
+      if (!nav) return;
+      var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+      var targets = links.map(function (link) {
+        return document.querySelector(link.getAttribute("href"));
+      }).filter(Boolean);
 
-      var trailEls = [];
-      for (var j = 0; j < TRAIL_COUNT; j++) {
-        var t = document.createElement("span");
-        t.className = "cursor-trail";
-        layer.appendChild(t);
-        trailEls.push(t);
+      function setActiveById(id) {
+        links.forEach(function (link) {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+        });
       }
 
-      var rippleEl = null;
-
-      function createRipple() {
-        if (rippleEl) return;
-        rippleEl = document.createElement("span");
-        rippleEl.className = "cursor-ripple";
-        layer.appendChild(rippleEl);
-      }
-
-      function removeRipple() {
-        if (!rippleEl) return;
-        rippleEl.remove();
-        rippleEl = null;
-      }
-
-      window.addEventListener("mousemove", function (e) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        layer.classList.add("is-visible");
-        lastMove = Date.now();
-        removeRipple();
-
-        var target = e.target;
-        hovering = !!(target && target.closest && target.closest("a, button, input, textarea, select, [role='button']"));
-        mainEl.classList.toggle("is-hovering", hovering);
+      links.forEach(function (link) {
+        link.addEventListener("click", function () {
+          var href = link.getAttribute("href");
+          if (href && href.startsWith("#")) setActiveById(href.slice(1));
+        });
       });
 
-      window.addEventListener("mouseout", function () { layer.classList.remove("is-visible"); });
-      window.addEventListener("mouseover", function () { layer.classList.add("is-visible"); });
+      var io = new IntersectionObserver(function (entries) {
+        var visible = entries
+          .filter(function (entry) { return entry.isIntersecting; })
+          .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
+        if (visible.length > 0) setActiveById(visible[0].target.id);
+      }, { threshold: [0.25, 0.45, 0.65], rootMargin: "-90px 0px -40% 0px" });
 
-      function tick() {
-        trail[0].x += (mouse.x - trail[0].x) * 0.3;
-        trail[0].y += (mouse.y - trail[0].y) * 0.3;
+      targets.forEach(function (target) { io.observe(target); });
+      if (targets[0]) setActiveById(targets[0].id);
+    }
 
-        for (var k = 1; k < trail.length; k++) {
-          trail[k].x += (trail[k - 1].x - trail[k].x) * 0.35;
-          trail[k].y += (trail[k - 1].y - trail[k].y) * 0.35;
-        }
+    renderProjectCards();
+    setupNavActiveState();
 
-        mainEl.style.left = mouse.x + "px";
-        mainEl.style.top = mouse.y + "px";
+    document.getElementById("projectTrack").addEventListener("click", function (e) {
+      var card = e.target.closest(".project-card");
+      if (!card) return;
+      openProjectModal(Number(card.dataset.index));
+    });
+    document.getElementById("modalClose").addEventListener("click", closeProjectModal);
+    document.getElementById("projectModal").addEventListener("click", function (e) {
+      if (e.target.id === "projectModal") closeProjectModal();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeProjectModal();
+    });
 
-        for (var m = 0; m < TRAIL_COUNT; m++) {
-          var progress = (TRAIL_COUNT - m) / TRAIL_COUNT;
-          var size = 16 * progress;
-          var el = trailEls[m];
-          el.style.width = size + "px";
-          el.style.height = size + "px";
-          el.style.left = trail[m].x + "px";
-          el.style.top = trail[m].y + "px";
-          el.style.opacity = progress * (hovering ? 0.7 : 0.45);
-        }
-
-        var idle = Date.now() - lastMove > 800;
-        if (idle) {
-          createRipple();
-          if (rippleEl) {
-            rippleEl.style.left = mouse.x + "px";
-            rippleEl.style.top = mouse.y + "px";
-          }
-        }
-
-        requestAnimationFrame(tick);
-      }
-
-      requestAnimationFrame(tick);
+    (function () {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+      document.querySelectorAll(".animate-in").forEach(function (el) { obs.observe(el); });
     })();
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var id = this.getAttribute("href");
+        if (id === "#") return;
+        var t = document.querySelector(id);
+        if (t) {
+          e.preventDefault();
+          t.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
   </script>
 </body>
 </html>
