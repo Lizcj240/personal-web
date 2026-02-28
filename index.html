@@ -7,15 +7,15 @@
   <meta name="description" content="王世林个人简历站：背景、自我介绍、工作经历、项目经历与联系方式。">
   <style>
     :root {
-      --bg-dark: #050816;
-      --bg-card: rgba(12, 24, 20, 0.86);
-      --bg-card-hover: rgba(18, 36, 30, 0.92);
-      --text-primary: #f9fafb;
-      --text-secondary: #e5e7eb;
-      --text-muted: rgba(229, 231, 235, 0.65);
-      --accent-green: #48ff9b;
-      --accent-teal: #2dd4bf;
-      --accent-line: rgba(72, 255, 155, 0.26);
+      --bg-dark: #f6f8fb;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f2f7f4;
+      --text-primary: #111827;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent-green: #15b66a;
+      --accent-teal: #15b66a;
+      --accent-line: rgba(21, 182, 106, 0.3);
       --radius-md: 12px;
       --radius-lg: 20px;
       --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -25,8 +25,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at 10% -20%, rgba(72, 255, 155, 0.12), transparent 35%), var(--bg-dark);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 10% -20%, rgba(21, 182, 106, 0.12), transparent 35%), var(--bg-dark);
       color: var(--text-primary);
       line-height: 1.7;
       overflow-x: hidden;
@@ -40,9 +40,9 @@
       right: 0;
       z-index: 1000;
       padding: 20px 48px;
-      background: rgba(5, 8, 22, 0.78);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
     .nav-inner {
       max-width: 1200px;
@@ -52,7 +52,7 @@
       align-items: center;
     }
     .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
-    .logo span { color: var(--accent-green); }
+    .logo span { color: var(--text-primary); }
     .nav-links {
       flex: 1;
       max-width: 65%;
@@ -85,7 +85,7 @@
     .nav-links a:hover { color: var(--accent-green); }
     .nav-links a.active {
       color: var(--accent-green);
-      font-weight: 600;
+      font-weight: 700;
     }
     .nav-links a.active::after { transform: scaleX(1); }
 
@@ -107,7 +107,7 @@
       color: var(--accent-green);
       font-size: 1.1rem;
       margin-bottom: 16px;
-      font-weight: 600;
+      font-weight: 700;
     }
     .hero-intro {
       max-width: 920px;
@@ -135,7 +135,7 @@
     }
     .card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(15, 23, 42, 0.1);
       border-radius: var(--radius-lg);
       padding: 24px;
       transition: all 0.25s var(--transition-smooth);
@@ -152,7 +152,7 @@
       padding-left: 14px;
       border-left: 2px solid var(--accent-line);
     }
-    .edu-time { color: var(--accent-teal); font-size: 0.84rem; margin-bottom: 2px; }
+    .edu-time { color: var(--text-primary); font-size: 0.84rem; margin-bottom: 2px; font-weight: 600; }
     .skill-tags {
       display: flex;
       flex-wrap: wrap;
@@ -162,6 +162,7 @@
     .tag {
       font-size: 0.82rem;
       color: var(--accent-green);
+      font-weight: 700;
       border: 1px solid rgba(72, 255, 155, 0.28);
       border-radius: 999px;
       padding: 5px 10px;
@@ -175,7 +176,7 @@
     }
     .about-list li {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(15, 23, 42, 0.1);
       border-radius: 12px;
       padding: 14px 16px;
     }
@@ -196,7 +197,7 @@
     .exp-list { display: grid; gap: 22px; }
     .exp-item {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(15, 23, 42, 0.1);
       border-radius: var(--radius-md);
       padding: 26px 28px;
     }
@@ -209,22 +210,22 @@
       margin-bottom: 10px;
     }
     .exp-company { font-size: 1.2rem; font-weight: 600; }
-    .exp-date { color: var(--text-muted); font-size: 0.9rem; }
-    .exp-role { color: var(--accent-green); font-size: 0.95rem; margin-bottom: 14px; }
+    .exp-date { color: var(--text-primary); font-size: 0.9rem; font-weight: 600; }
+    .exp-role { color: var(--accent-green); font-size: 0.95rem; margin-bottom: 14px; font-weight: 700; }
     .direction-grid {
       display: grid;
       gap: 10px;
     }
     .direction {
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(15, 23, 42, 0.08);
       border-radius: 10px;
       padding: 12px 14px;
-      background: rgba(0, 0, 0, 0.16);
+      background: #f8fafc;
     }
     .direction-title {
       color: var(--accent-teal);
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 6px;
     }
     .direction ul { padding-left: 18px; display: grid; gap: 6px; }
@@ -238,9 +239,9 @@
       padding: 8px 2px 18px;
     }
     .project-card {
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(15, 23, 42, 0.1);
       border-radius: var(--radius-lg);
-      background: linear-gradient(160deg, rgba(72, 255, 155, 0.08), rgba(8, 16, 30, 0.9));
+      background: linear-gradient(160deg, rgba(21, 182, 106, 0.08), #ffffff);
       padding: 20px;
       cursor: pointer;
       transition: all 0.22s var(--transition-smooth);
@@ -253,8 +254,8 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
     }
     .project-title { font-size: 1.06rem; font-weight: 600; margin-bottom: 8px; }
-    .project-time { color: var(--accent-teal); font-size: 0.84rem; margin-bottom: 8px; }
-    .project-role { color: var(--accent-green); font-size: 0.86rem; margin-bottom: 10px; }
+    .project-time { color: var(--text-primary); font-size: 0.84rem; margin-bottom: 8px; font-weight: 600; }
+    .project-role { color: var(--accent-green); font-size: 0.86rem; margin-bottom: 10px; font-weight: 700; }
     .project-cover-desc {
       color: var(--text-secondary);
       font-size: 0.9rem;
@@ -272,10 +273,16 @@
       margin-top: 12px;
       font-size: 0.86rem;
       color: var(--accent-green);
-      font-weight: 600;
+      font-weight: 700;
     }
     .project-more::after {
-      content: ">";
+      content: "";
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M48.614141 512.514586C48.614141 256.995556 256.478384 49.131313 512.003879 49.131313c255.51903 0 463.38198 207.864242 463.38198 463.383273 0 255.525495-207.864242 463.388444-463.38198 463.388444C256.478384 975.904323 48.614141 768.040081 48.614141 512.514586L48.614141 512.514586zM909.191758 512.514586c0-219.015758-178.173414-397.186586-397.186586-397.186586-219.020929 0-397.193051 178.172121-397.193051 397.186586 0 219.019636 178.172121 397.191758 397.193051 397.191758C731.018343 909.707636 909.191758 731.535515 909.191758 512.514586L909.191758 512.514586zM567.474424 701.247354l165.761293-163.939556c9.797818-9.667232 12.249212-23.964444 7.378747-35.979636-0.297374-0.757657-1.025293-1.353697-1.387313-2.085495-1.521778-3.075879-3.176727-6.156929-5.72897-8.737616-0.028444-0.029737-0.065939-0.029737-0.094384-0.065939-0.036202-0.029737-0.036202-0.067232-0.067232-0.100848L568.962586 325.510465c-12.907313-12.944808-33.857939-12.974545-46.796283-0.071111-6.491798 6.454303-9.733172 14.964364-9.733172 23.434343 0 8.442828 3.206465 16.914101 9.662061 23.368404l106.843798 107.177374L313.407354 479.419475c-18.302707 0-33.101576 14.828606-33.101576 33.096404 0 18.27297 14.797576 33.101576 33.101576 33.101576l317.287434 0-109.756768 108.56598c-6.556444 6.454303-9.830141 14.995394-9.830141 23.53002 0 8.409212 3.176727 16.818424 9.566384 23.272727C533.513051 713.990465 554.467556 714.121051 567.474424 701.247354L567.474424 701.247354z' fill='%2315b66a'/%3E%3C/svg%3E");
       transition: transform 0.2s;
     }
     .project-card:hover .project-more::after {
@@ -288,7 +295,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(15, 23, 42, 0.36);
       backdrop-filter: blur(6px);
       z-index: 3000;
       padding: 20px;
@@ -298,8 +305,8 @@
       width: min(860px, 96vw);
       max-height: 88vh;
       overflow: auto;
-      background: #0b1522;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.14);
       border-radius: 16px;
       padding: 24px;
     }
@@ -312,7 +319,7 @@
     }
     .modal-title { font-size: 1.3rem; font-weight: 700; }
     .modal-close {
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(15, 23, 42, 0.2);
       background: transparent;
       color: var(--text-secondary);
       border-radius: 8px;
@@ -337,7 +344,7 @@
     .contact-links { display: grid; gap: 14px; max-width: 520px; }
     .contact-link {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(15, 23, 42, 0.1);
       border-radius: var(--radius-md);
       padding: 16px 20px;
       color: var(--text-secondary);
@@ -348,7 +355,7 @@
     .footer {
       text-align: center;
       padding: 38px 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
       color: var(--text-muted);
       font-size: 0.9rem;
     }
@@ -366,10 +373,32 @@
       .projects-track { grid-template-columns: 1fr; }
     }
     @media (max-width: 680px) {
+      :root { --header-h: 124px; }
       .header { padding: 16px 22px; }
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .logo { font-size: 1.2rem; }
+      .nav-links {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        gap: 18px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 2px;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a {
+        flex: 0 0 auto;
+        font-size: 0.9rem;
+      }
       .hero, section { padding-left: 22px; padding-right: 22px; }
-      .hero { padding-top: 108px; }
-      .nav-links { display: none; }
+      .hero { padding-top: 138px; }
       .modal-content { padding: 18px; }
     }
   </style>
